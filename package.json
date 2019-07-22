@@ -1,0 +1,34 @@
+{
+  "name": "voicepad-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voicepad/voicepad-core.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/voicepad/voicepad-core/issues"
+  },
+  "homepage": "https://github.com/voicepad/voicepad-core#readme",
+  "dependencies": {
+    "@google-cloud/storage": "^1.5.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.13.4",
+    "fs-extra": "^0.30.0",
+    "helmet": "^3.9.0",
+    "multer": "^1.1.0",
+    "path": "^0.12.7",
+    "progress-stream": "^2.0.0",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "react-dropzone-component": "^3.0.0",
+    "util": "^0.10.3"
+  }
+}
