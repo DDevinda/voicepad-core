@@ -8,6 +8,9 @@ const Storage = require('@google-cloud/storage');
 const storage = Storage();
 const app = express();
 
+const gcpHelper = require('../helpers/gcs_uploader');
+
+
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '')));
 
@@ -17,6 +20,13 @@ const multer = Multer({
         fileSize: 5 * 1024 * 1024 // no larger than 5mb, you can change as needed.
     }
 });
+
+const multerStorage = multer({
+    storage: multer.MemoryStorage,
+    limits: {
+      fileSize: 5 * 1024 * 1024 // no larger than 5mb
+    }
+  });
 
 // A bucket is a container for objects (files).
 const bucket = storage.bucket('nvjot');
@@ -43,6 +53,18 @@ app.post('/uploadHandler', multer.single('file'), (req, res, next) => {
     });
 
     blobStream.end(req.file.buffer);
+});
+
+app.post('/someFileUpload', multerStorage.single('file_upload'), gcpHelper.sendUploadToGCS, function (req, res) {
+    console.log('outside the if else');
+    if(req.file){
+        console.log('file is here');
+        res.send({'file status':'file uploaded successfully'});
+
+    } else {
+        console.log('no file');
+    }
+
 });
 
 const PORT = process.env.PORT || 3000;
